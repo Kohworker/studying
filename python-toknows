@@ -1,0 +1,60 @@
+import heapq
+
+# List
+my_list = [1, 2, 3, 4, 5]
+my_list.append(6)
+print("List:", my_list)
+
+# Stack
+stack = []
+stack.append(1)
+stack_item = stack.pop()
+print("Stack Item:", stack_item)
+
+# Queue
+from collections import deque
+queue = deque()
+queue.append(1)
+queue_item = queue.popleft()
+print("Queue Item:", queue_item)
+
+# Heap
+heap = []
+heapq.heappush(heap, 1)
+heap_item = heapq.heappop(heap)
+print("Heap Item:", heap_item)
+
+# Set
+my_set = {1, 2, 3}
+my_set.add(4)
+my_set.remove(2)
+print("Set:", my_set)
+
+# Dictionary
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+my_dict['d'] = 4
+del my_dict['a']
+print("Dictionary:", my_dict)
+
+# Max Heap
+max_heap = []
+heapq.heappush(max_heap, -4)
+heapq.heappush(max_heap, -10)
+heapq.heappush(max_heap, -8)
+max_heap_item = -heapq.heappop(max_heap)
+print("Max Heap Pop:", max_heap_item)  # Pop the root (maximum) element
+
+#sorted
+sorted_numbers_desc = sorted(numbers, reverse=True)
+data = [(3, 'C'), (1, 'A'), (2, 'B')]
+
+# Sorting based on the first element of each tuple
+sorted_data = sorted(data, key=lambda x: x[0])
+print("Sorted based on first element:", sorted_data)
+
+# Sorting based on the second element of each tuple
+sorted_data = sorted(data, key=lambda x: x[1])
+print("Sorted based on second element:", sorted_data)
+
+#list comprehension
+[x for x in range(30) if x%3 == 0]

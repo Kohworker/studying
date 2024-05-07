@@ -1,0 +1,86 @@
+AWS Technology Stack
+Compute services
+- EC2 - resizeable compute in the cloud.  VM that can be customized to run application. Can be behind an autoscaling group
+- AWS Lambda - Run code without provisioning servers and respond to triggers.  Simple things
+
+Storage
+- S3 - Blob Storage
+- EBS - Block storage, can be persistant and attached to EC2 instances
+- Artifactory
+
+DB
+- RDS - SQL database that can vertically scale.  Can manually shard data across RDS instances, use read replicas, can use built in sharding/data distributiion systems
+- DynamoDB - NoSQL db focusing on availability that can horizontally scale. Partion by partion key. Can add a cache on top
+- Cassandra - Eventual Consistency
+
+Relational - vertical scaling, increase size or capacity with bigger machines
+NoSQL - Horizontal scaling, more machines. 
+
+Caching
+- Redis (Elasticache) - in memory cache system. General cache. Supports pub/sub messaging. 
+- Memcached (Elasticcache) - distributed memory object cache system that stores with key value pairs
+- Cloudfront - CDN which can cache content at edge locations
+- API Gateway - Can cache API responses and calls, 
+
+Amazon API Gateway - Create publish maintain monitor and secure APIs at any scale. Can act as a proxy for backend services
+    - including k8s clusters
+
+VPC - Virtual Private Cloud - define network topography, route tables, control policies, and aws resources
+Route 53 - DNS web service to route traffic to aws resources. 
+ELB - Elastic Load Balancer to balance traffic in a set of things.  
+
+Amazon Kubernetes stuff
+EKS - Managed Kubernetes service to run k8s cluster in cloud without provisioning underlying infra
+Can work with EBS and EFS(Elastic File Service which is a shared file system for k8s clusters)
+EKS w/ ec2 - can scale computer compacity of the k8s cluster
+eks w/ fargate - servierless compute engine for containers, so they can run containers without managing ec2
+
+observability
+    - AWS Cloudwatch to monitor trace and observability
+    - Elasticsearch for logging
+    - ELK Stack (Elasticache, Log, Kibana)
+    - Prometheus with Grafana
+
+4 Golden Signals
+    - Latency - Time to do a request
+    - traffic - How many requests are being passed through system, how much demand
+    - Errors - How many fail, what kind of errors
+    - Saturation - How full your service is, measure of system
+
+Message/Queue stuff
+    - Amazon SNS/SQS
+    - Google Pub/Sub
+    -  
+
+Release process
+- Multiple deployments
+- A/B Deployments
+- Rolling Reployments
+- Testing gates to deploy/release
+
+UDP vs TCP - UDP is fast and doesn't care if dropped, TCP has a handshake. 
+
+Websocket vs HTTP server vs GRPC
+    - websocket is bidirectional and open communication. very stateful
+    - HTTP server can be stateless with taking http protocols with HEADERS and GET POST PUT DELETE (CRUD), usually RESTFUL apis
+    - GRPC - message based protocol encoded, stateless, scalable, headers with every grpc so it bloats, cross-language compatible, bidirectional streaming
+
+Rate Limiting
+    - Bucket/Token
+    - 
+
+Terraform, K8s, Helm
+- Terraform - Infra as code
+- K8s - Container orchestration platform, Pod is the smallest deployeable unit that contains containers, deployment defines desiresd number of pods and manage lifecycle of pods
+    - services defines a set of pods and a policy.  provides stable endpoint for accessing pods
+    - kubelet - k8s sidecar that manages containers and reports to the control plane
+    - Monitoring - Container metrics, cluster health, pod metrics, node metrics, pod logs, custom metrics
+    - plugins - executable plugins to extend functionality and additional tasks, "kubectl-" and on path
+    - kubectl - command line to access k8s, apply to run it
+- Helm
+    - package manager for k8s to simplify deployment and management of applications
+    - charts that are pre-configured k8s resources to define structure and behavior
+    - yalm files, paramaterize charts to enable customization
+
+CAP Theorem
+Consistency, availability, Partition tolerance
